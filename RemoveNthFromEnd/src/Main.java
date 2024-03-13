@@ -18,26 +18,52 @@ public class Main {
         }
     }
     public static void main(String[] args) {
+        ListNode node=new ListNode(1);
+         node.next=new ListNode(2);
+//         node.next.next=new ListNode(3);
+//         node.next.next.next=new ListNode(4);
+//         node.next.next.next.next=new ListNode(5);
 
+        System.out.println(removeNthFromEnd(node,1));
     }
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
 
 
-        ListNode curr, prev;
-        curr = head.next;
-        prev = head;
-        if (head.val == n)
-            head = head.next;
-        while (curr != null) {
 
-            if (curr.val == n) {
-                prev.next = curr.next;
-                curr = curr.next;
-            } else {
-                prev = prev.next;
-                curr = curr.next;
-            }
+
+        ListNode count = head;
+
+        int i = 1;
+        while (count != null) {
+            i++;
+            count = count.next;
         }
+        i=i-1;
+        if (i==1){
+            return null;
+        }
+        if (i==0){
+            return head.next;
+        }
+        int y = i - n;
+        System.out.println(i);
+        System.out.println(n);
+        System.out.println(y);
+
+        ListNode curr =head.next;
+        ListNode node=head;
+         i=1;
+        while (curr!=null){
+            if (i==y){
+                node.next=curr.next;
+                curr=curr.next;
+            }else {
+                curr=curr.next;
+                node=node.next;
+            }
+            i++;
+        }
+
         return head;
     }
 }
